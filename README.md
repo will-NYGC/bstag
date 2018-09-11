@@ -1,5 +1,5 @@
-# bstag
-BStag protocol for whole genome bisulfite sequencing on the Illumina X platform. Two versions of the filter script are included, `filterFillIn2.pl` serially processes each line of the BAM. `filterFillIn3.pl` chunks the BAM and processes the chunks in parallel.
+# X-WGBS fill-in filtering
+X-WGBS protocol for whole genome bisulfite sequencing on the Illumina X platform. Two versions of the filter script are included, `filterFillIn2.pl` serially processes each line of the BAM. `filterFillIn3.pl` chunks the BAM and processes the chunks in parallel.
 
 ## Usage:
 
@@ -21,7 +21,7 @@ BStag protocol for whole genome bisulfite sequencing on the Illumina X platform.
 |-b|BAM alignment file produced by BWA-meth|
 |-r|Indexed reference FASTA file used for alignment|
 |-p|Output prefix. By default, replaces the `*.bam` extension with `*.filterFillIn`, and produces output `*.filterFillIn.(bam\|stats)`|
-|-k|Keep CHH state strings. Creates a file, PREFIX.chhStates.txt, describing the sequence of CHH calls per read with a `\|` marking the expected fill-in distance`|
+|-k|Keep CHH state strings. Creates a file, PREFIX.chhStates.txt, describing the sequence of CHH calls per read with a `\|` marking the fill-in distance position`|
 |-d|Fill-in distance of end repair following transposition--default is 11bp|
 |-v|Verbose mode|
 |-h|Print a help message|
