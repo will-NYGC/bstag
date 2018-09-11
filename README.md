@@ -1,6 +1,17 @@
 # X-WGBS fill-in filtering
 X-WGBS protocol for whole genome bisulfite sequencing on the Illumina X platform. Two versions of the filter script are included, `filterFillIn2.pl` serially processes each line of the BAM. `filterFillIn3.pl` chunks the BAM and processes the chunks in parallel.
 
+## Dependencies
+|Software/Perl Module|
+|--------|
+|samtools v1.7|
+|Bio::DB::Bam::Alignment|
+|Getopt::Long|
+|IPC::Cmd qw(can_run)|
+|List::Util qw(min max)|
+|Parallel::ForkManager|
+|Fcntl qw(:flock SEEK_END)|
+
 ## Usage:
 
 ```bash
@@ -25,3 +36,9 @@ X-WGBS protocol for whole genome bisulfite sequencing on the Illumina X platform
 |-d|Fill-in distance of end repair following transposition--default is 11bp|
 |-v|Verbose mode|
 |-h|Print a help message|
+
+## Example
+```
+./filterFillIn2.pl -b test/na12878_10k_chr1.bam -r hg19.fa -p test/na12878_10k_chr1.filterFillIn -k -v
+./filterFillIn3.pl -b test/na12878_10k_chr1.bam -r hg19.fa -p test/na12878_10k_chr1.filterFillIn -k -n 2 -c 1000 -v
+```

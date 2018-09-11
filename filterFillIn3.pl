@@ -154,6 +154,17 @@ if (scalar @chunk > 0) {
     print $chh_string_fh "$chh_string\n" if $keep_string;
 }
 close($output_fh);
+
+
+# Print stats to stdout so can redirect to file
+my $filtered_rate = ($mapped > 0) ? $filtered/$mapped : 'NA';
+
+my $stats = "$prefix.stats";
+open(my $stats_fh,">$stats");
+print $stats_fh join("\t","#Mapped",qw( Unmapped Map.filtered Map.filtered.rate )) . "\n";
+print $stats_fh join("\t",$mapped,$unmapped,$filtered,$filtered_rate) . "\n";
+
+
 # END #####
 
 
